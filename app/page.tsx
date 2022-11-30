@@ -1,5 +1,11 @@
+import ThemeSwitch from '../components/ThemeSwitch';
+
 const Page = () => {
-  return <div>Page</div>;
+  return (
+    <div>
+      <ThemeSwitch />
+    </div>
+  );
 };
 
 export default Page;
