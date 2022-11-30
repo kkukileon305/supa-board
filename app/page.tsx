@@ -1,10 +1,11 @@
-import ThemeSwitch from '../components/ThemeSwitch';
+import Header from '../components/Header';
 
 const Page = () => {
   return (
-    <div>
-      <ThemeSwitch />
-    </div>
+    <>
+      <Header />
+      <main className='max-w-[1060px] mx-auto w-full p-3'>Page</main>
+    </>
   );
 };
 
