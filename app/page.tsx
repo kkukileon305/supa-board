@@ -1,5 +1,6 @@
 import DebugBtn from '../components/DebugBtn';
 import Header from '../components/Header';
+import PostBtn from '../components/PostBtn';
 
 const Page = () => {
   return (
@@ -9,6 +10,7 @@ const Page = () => {
         <h2>Main Page</h2>
         <DebugBtn />
       </main>
+      <PostBtn />
     </>
   );
 };

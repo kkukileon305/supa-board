@@ -3,32 +3,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { AiOutlineHome } from 'react-icons/ai';
+import { categories } from '../utils/categories';
 import supabase from '../utils/supabaseClient';
 import useUser from '../utils/zustand';
 import ThemeSwitch from './ThemeSwitch';
-
-const navs = [
-  {
-    url: 'free',
-    name: '자유',
-  },
-  {
-    url: 'good',
-    name: '굿',
-  },
-  {
-    url: 'asd',
-    name: 'ASD',
-  },
-  {
-    url: 'qwe',
-    name: 'QWE',
-  },
-  {
-    url: 'zxc',
-    name: 'ZXC',
-  },
-];
 
 const Header = () => {
   const router = useRouter();
@@ -47,10 +25,10 @@ const Header = () => {
           <AiOutlineHome size={30} />
         </Link>
         <ul className='flex items-center gap-8'>
-          {navs.map(nav => (
-            <li key={nav.url}>
-              <Link className='text-gray-700 dark:text-gray-200' href={`/${nav.url}`}>
-                {nav.name}
+          {categories.map(category => (
+            <li key={category.url}>
+              <Link className='text-gray-700 dark:text-gray-200' href={`/board?category=${category.url}`}>
+                {category.name}
               </Link>
             </li>
           ))}

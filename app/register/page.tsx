@@ -52,19 +52,19 @@ const RegisterPage = () => {
           <h2 className='font-bold text-3xl text-center text-red-400 mb-8'>회원가입</h2>
 
           <p className='font-bold text-gray-700 dark:text-white'>이메일</p>
-          <input type='email' {...register('email', { required: true })} className='block border p-1 w-full my-4 focus:outline-none' />
+          <input type='email' {...register('email', { required: true })} className='block bg-transparent border p-1 w-full my-4 focus:outline-none' />
 
           <div className='flex justify-between'>
             <p className='font-bold text-gray-700 dark:text-white'>비밀번호</p>
             <p className='text-gray-700/50 dark:text-white/50'>최소 6글자 이상</p>
           </div>
-          <input type='password' autoComplete='off' {...register('password', { required: true, minLength: 6 })} className='block border p-1 w-full my-4 focus:outline-none' />
+          <input type='password' autoComplete='off' {...register('password', { required: true, minLength: 6 })} className='block bg-transparent border p-1 w-full my-4 focus:outline-none' />
 
           <div className='flex justify-between'>
             <p className='font-bold text-gray-700 dark:text-white'>닉네임</p>
             <p className='text-gray-700/50 dark:text-white/50'>2글자 이상 6글자 이하</p>
           </div>
-          <input type='text' autoComplete='off' {...register('username', { required: true, minLength: 2, maxLength: 6 })} className='block border p-1 w-full my-4 focus:outline-none' />
+          <input type='text' autoComplete='off' {...register('username', { required: true, minLength: 2, maxLength: 6 })} className='block  bg-transparent border p-1 w-full my-4 focus:outline-none' />
 
           <p className='text-center text-red-400'>{errors.email || errors.password || errors.username ? '양식을 확인해주세요' : 'Good'}</p>
           <button disabled={disabled} className='rounded-full h-[52px] py-3 w-full block bg-red-400 mt-8 font-bold text-xl text-white'>

@@ -13,9 +13,9 @@ const Modal = ({ message, setModal, redirect }: { message: string; setModal: Dis
 
   return (
     <div className='fixed z-10 w-full h-full bg-black/50 flex items-center justify-center cursor-pointer' onClick={closeModal}>
-      <div className='bg-white rounded-xl p-8'>
+      <div className='bg-white max-w-[500px] w-full rounded-xl p-8'>
         <h2 className='font-bold text-2xl mb-10 text-center text-red-400'>알림</h2>
-        <p>{message}</p>
+        <p className='text-gray-700'>{message}</p>
       </div>
     </div>
   );

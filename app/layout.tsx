@@ -1,4 +1,5 @@
 import { Noto_Sans_KR } from '@next/font/google';
+import PostBtn from '../components/PostBtn';
 import Provider from '../components/Provider';
 import '../styles/globals.css';
 

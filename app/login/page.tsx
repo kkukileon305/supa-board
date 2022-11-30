@@ -16,8 +16,9 @@ type Form = {
 const LoginPabe = () => {
   const setSession = useUser(store => store.setSession);
   const router = useRouter();
+
   const [disabled, setDisabled] = useState(false);
-  const [message, setMessage] = useState('');
+  const [error, setError] = useState(false);
 
   const {
     register,
@@ -35,7 +36,7 @@ const LoginPabe = () => {
 
     if (error || !session) {
       console.log(error);
-      setMessage('입력정보 확인 또는 이메일 인증 확인');
+      setError(true);
       setDisabled(false);
     } else {
       setSession(session);
@@ -49,10 +50,10 @@ const LoginPabe = () => {
         <h2 className='font-bold text-3xl text-center text-red-400 mb-8'>로그인</h2>
 
         <p className='font-bold text-gray-400 dark:text-white'>Email</p>
-        <input type='email' {...register('email', { required: true })} className='block border p-1 w-full my-4 focus:outline-none' />
+        <input type='email' {...register('email', { required: true })} className='block bg-transparent border p-1 w-full my-4 focus:outline-none' />
         <p className='font-bold text-gray-400 dark:text-white'>Password</p>
-        <input type='password' autoComplete='off' {...register('password', { required: true, minLength: 6 })} className='block border p-1 w-full my-4 focus:outline-none' />
-        <p className='text-center text-red-400'>{errors.email || errors.password || message ? message : 'Good'}</p>
+        <input type='password' autoComplete='off' {...register('password', { required: true, minLength: 6 })} className='block bg-transparent border p-1 w-full my-4 focus:outline-none' />
+        <p className='text-center text-red-400'>{errors.email || errors.password || error ? '입력정보 확인 또는 이메일 인증 확인' : 'Good'}</p>
         <button disabled={disabled} className='rounded-full h-[52px] py-3 w-full block bg-red-400 mt-8 font-bold text-xl text-white'>
           {disabled ? <ImSpinner2 className='mx-auto animate-spin' size={20} /> : '로그인하기'}
         </button>
