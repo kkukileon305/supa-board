@@ -1,5 +1,12 @@
+'use client';
+
+import { Session } from '@supabase/supabase-js';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { use, useEffect, useState } from 'react';
 import { AiOutlineHome } from 'react-icons/ai';
+import supabase from '../utils/supabaseClient';
+import useUser from '../utils/zustand';
 import ThemeSwitch from './ThemeSwitch';
 
 const navs = [
@@ -26,9 +33,18 @@ const navs = [
 ];
 
 const Header = () => {
+  const router = useRouter();
+  const { session, clearSession } = useUser(({ session, setSession, clearSession }) => ({ session, setSession, clearSession }));
+
+  const logout = async () => {
+    await supabase.auth.signOut();
+    clearSession();
+    router.push('/login');
+  };
+
   return (
-    <header className='border-b sticky top-0'>
-      <div className='max-w-[1060px] mx-auto w-full p-3 flex justify-between'>
+    <header className='border-b sticky top-0 '>
+      <div className='max-w-[1060px] mx-auto w-full p-3 flex justify-between items-center'>
         <Link className='block font-bold text-2xl' href={'/'}>
           <AiOutlineHome size={30} />
         </Link>
@@ -43,18 +59,24 @@ const Header = () => {
         </ul>
 
         <ThemeSwitch />
-        <ul className='flex items-center gap-4'>
-          <li>
-            <Link className='transition bg-red-white dark:bg-gray-700 py-2 px-4 border text-sm text-gray-400 dark:text-white font-bold rounded-full' href={`/login`}>
-              로그인
-            </Link>
-          </li>
-          <li>
-            <Link className='bg-red-400 py-2 px-4 text-sm text-white font-bold rounded-full' href={`/register`}>
-              회원가입
-            </Link>
-          </li>
-        </ul>
+        {session ? (
+          <button onClick={logout} className='block h-[38px] bg-red-400 py-2 px-4 text-sm text-white font-bold rounded-full'>
+            로그아웃
+          </button>
+        ) : (
+          <ul className='flex items-center gap-4 w-[180px]'>
+            <li>
+              <Link className='block transition bg-red-white dark:bg-gray-700 py-2 px-4 border text-sm text-gray-400 dark:text-white font-bold rounded-full' href={`/login`}>
+                로그인
+              </Link>
+            </li>
+            <li>
+              <Link className='block bg-red-400 py-2 px-4 text-sm text-white font-bold rounded-full' href={`/register`}>
+                회원가입
+              </Link>
+            </li>
+          </ul>
+        )}
       </div>
     </header>
   );
