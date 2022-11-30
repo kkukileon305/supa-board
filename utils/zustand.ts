@@ -1,6 +1,5 @@
 import { Session } from '@supabase/supabase-js';
 import create from 'zustand';
-import { devtools } from 'zustand/middleware';
 
 type UserStore = {
   session: Session | null;
@@ -8,12 +7,10 @@ type UserStore = {
   clearSession: () => void;
 };
 
-const useUser = create(
-  devtools<UserStore>(set => ({
-    session: null,
-    setSession: session => set({ session }),
-    clearSession: () => set({ session: null }),
-  }))
-);
+const useUser = create<UserStore>(set => ({
+  session: null,
+  setSession: session => set({ session }),
+  clearSession: () => set({ session: null }),
+}));
 
 export default useUser;

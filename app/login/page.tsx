@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Link from 'next/link';
 import useUser from '../../utils/zustand';
+import { ImSpinner2 } from 'react-icons/im';
 
 type Form = {
   email: string;
@@ -52,8 +53,8 @@ const LoginPabe = () => {
         <p className='font-bold text-gray-400 dark:text-white'>Password</p>
         <input type='password' autoComplete='off' {...register('password', { required: true, minLength: 6 })} className='block border p-1 w-full my-4 focus:outline-none' />
         <p className='text-center text-red-400'>{errors.email || errors.password || message ? message : 'Good'}</p>
-        <button disabled={disabled} className='rounded-full py-3 w-full block bg-red-400 mt-8 font-bold text-xl text-white'>
-          {disabled ? '로그인중' : '로그인하기'}
+        <button disabled={disabled} className='rounded-full h-[52px] py-3 w-full block bg-red-400 mt-8 font-bold text-xl text-white'>
+          {disabled ? <ImSpinner2 className='mx-auto animate-spin' size={20} /> : '로그인하기'}
         </button>
       </form>
       <Link className='font-bold text-gray-400 dark:text-white' href={'/'}>
