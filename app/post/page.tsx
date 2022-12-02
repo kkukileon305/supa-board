@@ -35,7 +35,7 @@ const PostPage = () => {
       setDisabled(true);
 
       try {
-        await axios.post('http://localhost:3000/api/board', { access_token, ...inputs, category: category.url });
+        await axios.post('/api/board', { access_token, ...inputs, category: category.url });
         router.push(`/board?category=${category.url}`);
         router.refresh();
       } catch (error) {

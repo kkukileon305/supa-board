@@ -17,7 +17,7 @@ const SearchPage = () => {
     clearTimeout(debounce.current);
 
     debounce.current = setTimeout(async () => {
-      const { data } = await axios.get<Board[]>(`http://localhost:3000/api/board?q=${_value}`);
+      const { data } = await axios.get<Board[]>(`/api/board?q=${_value}`);
       setBoards(data);
     }, 500);
   };

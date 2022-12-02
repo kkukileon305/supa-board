@@ -6,7 +6,7 @@ import { Board } from '../page';
 
 const getBoardsByCategory = async (category: string | undefined) => {
   if (!category) return [];
-  const boards: Board[] = await (await fetch(`http://localhost:3000/api/board?category=${category}`, { next: { revalidate: 60 } })).json();
+  const boards: Board[] = await (await fetch(`/api/board?category=${category}`, { next: { revalidate: 60 } })).json();
 
   return boards;
 };

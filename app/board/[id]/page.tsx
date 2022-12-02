@@ -3,7 +3,7 @@ import { categories } from '../../../utils/categories';
 import { Board } from '../../page';
 
 const getBoardById = async (id: string) => {
-  const board = await (await fetch(`http://localhost:3000/api/board?id=${id}`)).json();
+  const board = await (await fetch(`/api/board?id=${id}`)).json();
 
   return board;
 };

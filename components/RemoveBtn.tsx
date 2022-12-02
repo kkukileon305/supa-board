@@ -19,7 +19,7 @@ const RemoveBtn = ({ board }: { board: Board }) => {
 
     try {
       setDisabled(true);
-      await axios.patch('http://localhost:3000/api/board', { access_token, id: board.id });
+      await axios.patch('/api/board', { access_token, id: board.id });
 
       router.push(`/board?category=${board.category}`);
       router.refresh();
