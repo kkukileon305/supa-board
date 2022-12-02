@@ -51,16 +51,20 @@ const handler: NextApiHandler = async (req, res) => {
       return res.json(boards);
     }
 
-    const boards = await prisma.board.findMany({
-      orderBy: {
-        id: 'desc',
-      },
-      where: {
-        published: true,
-      },
-    });
+    try {
+      const boards = await prisma.board.findMany({
+        orderBy: {
+          id: 'desc',
+        },
+        where: {
+          published: true,
+        },
+      });
 
-    return res.json(boards);
+      return res.json(boards);
+    } catch (error) {
+      console.log(error);
+    }
   } else if (req.method === 'POST') {
     const { access_token, title, content, category } = req.body;
 
