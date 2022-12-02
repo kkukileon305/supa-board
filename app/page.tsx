@@ -29,11 +29,15 @@ const Page = async () => {
       <AdSwiper />
       <main className='max-w-[1060px] mx-auto w-full p-3'>
         <h2 className='font-bold text-3xl text-gray-700 dark:text-white my-8'>오늘의 게시글</h2>
-        <ul className='min-h-[20vh]'>
-          {boards.map(board => (
-            <BoardItem key={board.id} board={board} />
-          ))}
-        </ul>
+        {!!boards.length ? (
+          <ul>
+            {boards.map(board => (
+              <BoardItem key={board.id} board={board} />
+            ))}
+          </ul>
+        ) : (
+          <h2 className='text-center py-8 font-bold text-2xl'>아직 글이 없어요...</h2>
+        )}
       </main>
       <Footer />
       <PostBtn />

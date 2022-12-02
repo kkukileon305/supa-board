@@ -6,7 +6,20 @@ const prisma = new PrismaClient();
 
 const handler: NextApiHandler = async (req, res) => {
   if (req.method === 'GET') {
-    const { category, id } = req.query;
+    const { category, id, q } = req.query;
+
+    if (q && typeof q === 'string') {
+      const boards = await prisma.board.findMany({
+        where: {
+          published: true,
+          content: {
+            contains: q,
+          },
+        },
+      });
+
+      return res.json(boards);
+    }
 
     if (id && typeof id === 'string') {
       const board = await prisma.board.findFirst({
@@ -90,22 +103,27 @@ const handler: NextApiHandler = async (req, res) => {
         message: 'please token and id',
       });
 
-    const {
-      error,
-      data: { user },
-    } = await supabase.auth.getUser(access_token);
+    const [
+      {
+        error,
+        data: { user },
+      },
+      board,
+    ] = await Promise.all([
+      supabase.auth.getUser(access_token),
+      prisma.board.findFirst({
+        where: {
+          id,
+          published: true,
+        },
+      }),
+    ]);
 
     if (error || !user) {
       return res.status(400).json({
         message: 'invalide token',
       });
     }
-
-    const board = await prisma.board.findUnique({
-      where: {
-        id,
-      },
-    });
 
     if (!board)
       return res.status(400).json({

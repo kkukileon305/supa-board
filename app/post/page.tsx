@@ -26,6 +26,7 @@ const PostPage = () => {
     formState: { errors },
     handleSubmit,
     register,
+    setError,
   } = useForm<Inputs>();
 
   const onSubmit = async (inputs: Inputs) => {
@@ -40,6 +41,9 @@ const PostPage = () => {
       } catch (error) {
         console.log(error);
         setDisabled(false);
+        setError('content', {
+          message: '로그인을 확인해주세요',
+        });
       }
     }
   };

@@ -26,28 +26,27 @@ const ads = [
 
 const AdSwiper = () => {
   return (
-    <div className='overflow-x-hidden'>
-      <div className='mx-auto max-w-[1060px] p-3 relative'>
-        <Swiper //
-          spaceBetween={30}
-          direction='horizontal'
-          autoplay={{
-            delay: 10000,
-          }}
-          modules={[Autoplay]}
-          loop
-        >
-          {ads.map(ad => (
-            <SwiperSlide key={ad.id}>
-              <div className='w-full h-[300px] bg-blue-300 rounded-xl select-none flex justify-center items-center'>
-                <h4 className='font-bold text-3xl text-white'>{ad.content}</h4>
-              </div>
-            </SwiperSlide>
-          ))}
-          <NextButton />
-          <PrevButton />
-        </Swiper>
-      </div>
+    <div className='mx-auto max-w-[1060px] p-3 relative'>
+      <Swiper //
+        spaceBetween={30}
+        direction='horizontal'
+        autoplay={{
+          delay: 10000,
+        }}
+        modules={[Autoplay]}
+        loop
+        className='rounded-xl'
+      >
+        {ads.map(ad => (
+          <SwiperSlide key={ad.id}>
+            <div className='w-full h-[300px] bg-blue-300 rounded-xl select-none flex justify-center items-center'>
+              <h4 className='font-bold text-3xl text-white'>{ad.content}</h4>
+            </div>
+          </SwiperSlide>
+        ))}
+        <NextButton />
+        <PrevButton />
+      </Swiper>
     </div>
   );
 };

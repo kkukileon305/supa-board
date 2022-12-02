@@ -9,7 +9,7 @@ const notosans = Noto_Sans_KR({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html className={notosans.className}>
+    <html>
       <head />
       <body className='min-h-[100vh] dark:bg-gray-700'>
         <Provider>{children}</Provider>
