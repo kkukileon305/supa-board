@@ -19,6 +19,7 @@ model Board {
   username  String
   comments Comment[]
   category String
+  published Boolean @default(true)
 }
 
 model Comment {

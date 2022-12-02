@@ -6,6 +6,7 @@ import supabase from '../../utils/supabaseClient';
 import { ImSpinner2 } from 'react-icons/im';
 import Link from 'next/link';
 import Modal from '../../components/Modal';
+import { useRouter } from 'next/navigation';
 
 type Form = {
   email: string;
@@ -14,6 +15,7 @@ type Form = {
 };
 
 const RegisterPage = () => {
+  const router = useRouter();
   const [modal, setModal] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
@@ -46,7 +48,7 @@ const RegisterPage = () => {
 
   return (
     <>
-      {modal && <Modal message='인증 메일을 확인 후 로그인해주세요' setModal={setModal} redirect='/login' />}
+      {modal && <Modal message='인증 메일을 확인 후 로그인해주세요' setModal={setModal} onClose={() => router.push('/login')} />}
       <div className='min-h-[100vh] flex flex-col justify-center items-center'>
         <form onSubmit={handleSubmit(onSubmit)} className='max-w-[400px] w-full p-3'>
           <h2 className='font-bold text-3xl text-center text-red-400 mb-8'>회원가입</h2>

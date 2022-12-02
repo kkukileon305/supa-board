@@ -45,7 +45,7 @@ const Header = () => {
         ) : (
           <ul className='flex items-center gap-4 w-[180px]'>
             <li>
-              <Link className='block transition bg-red-white dark:bg-gray-700 py-2 px-4 border text-sm text-gray-400 dark:text-white font-bold rounded-full' href={`/login`}>
+              <Link className='block transition bg-white dark:bg-gray-700 py-2 px-4 border text-sm text-gray-400 dark:text-white font-bold rounded-full' href={`/login`}>
                 로그인
               </Link>
             </li>

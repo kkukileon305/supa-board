@@ -29,16 +29,17 @@ const PostPage = () => {
 
   const onSubmit = async (inputs: Inputs) => {
     if (!access_token) return;
+    if (!disabled) {
+      setDisabled(true);
 
-    setDisabled(true);
-
-    try {
-      await axios.post('http://localhost:3000/api/board', { access_token, ...inputs, category: category.url });
-      router.push('/');
-      router.refresh();
-    } catch (error) {
-      console.log(error);
-      setDisabled(false);
+      try {
+        await axios.post('http://localhost:3000/api/board', { access_token, ...inputs, category: category.url });
+        router.push(`/board?category=${category.url}`);
+        router.refresh();
+      } catch (error) {
+        console.log(error);
+        setDisabled(false);
+      }
     }
   };
 
@@ -98,7 +99,9 @@ const PostPage = () => {
         <input className='border p-3 bg-transparent block w-full focus:outline-none' placeholder='제목' type='text' {...register('title', { required: true })} />
         <textarea className='border p-3 h-[calc(100vh-282px)] bg-transparent resize-none block w-full focus:outline-none' placeholder='내용을 입력해주세요...' {...register('content', { required: true })} />
         <div className='w-full flex flex-row-reverse justify-between items-center'>
-          <button className='block h-[38px] bg-red-400 py-2 px-4 text-sm text-white font-bold rounded-full'>{disabled ? <ImSpinner2 className='mx-auto animate-spin w-[42px]' size={14} /> : '업로드'}</button>
+          <button disabled={disabled} className='block h-[38px] bg-red-400 py-2 px-4 text-sm text-white font-bold rounded-full'>
+            {disabled ? <ImSpinner2 className='mx-auto animate-spin w-[42px]' size={14} /> : '업로드'}
+          </button>
           {(errors.content || errors.title) && <p className='text-red-400'>제목과 내용을 입력해주세요</p>}
         </div>
       </form>

@@ -12,14 +12,18 @@ const Board = async ({ searchParams: { category: categoryUrl } }: { searchParams
   const boards = await getBoardsByCategory(categoryUrl);
 
   return (
-    <div>
+    <main className='max-w-[1060px] mx-auto w-full p-3'>
       <h2 className='font-bold text-3xl text-gray-700 dark:text-white my-8'>{categories.find(cate => cate.url === categoryUrl)?.name}</h2>
-      <ul>
-        {boards.map(board => (
-          <BoardItem key={board.id} board={board} />
-        ))}
-      </ul>
-    </div>
+      {!!boards.length ? (
+        <ul>
+          {boards.map(board => (
+            <BoardItem key={board.id} board={board} />
+          ))}
+        </ul>
+      ) : (
+        <h2 className='text-center font-bold text-2xl'>아직 글이 없어요</h2>
+      )}
+    </main>
   );
 };
 export default Board;
