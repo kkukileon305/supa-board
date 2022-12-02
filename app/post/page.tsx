@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { MouseEventHandler, useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ImSpinner2 } from 'react-icons/im';
+import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { categories } from '../../utils/categories';
 import useUser from '../../utils/zustand';
@@ -97,7 +98,7 @@ const PostPage = () => {
           {category.name}
         </button>
         <input className='border p-3 bg-transparent block w-full focus:outline-none' placeholder='제목' type='text' {...register('title', { required: true })} />
-        <textarea className='border p-3 h-[calc(100vh-282px)] bg-transparent resize-none block w-full focus:outline-none' placeholder='내용을 입력해주세요...' {...register('content', { required: true })} />
+        <textarea className='border p-3 h-[calc(100vh-322px)] bg-transparent resize-none block w-full focus:outline-none' placeholder='내용을 입력해주세요...' {...register('content', { required: true })} />
         <div className='w-full flex flex-row-reverse justify-between items-center'>
           <button disabled={disabled} className='block h-[38px] bg-red-400 py-2 px-4 text-sm text-white font-bold rounded-full'>
             {disabled ? <ImSpinner2 className='mx-auto animate-spin w-[42px]' size={14} /> : '업로드'}
@@ -105,6 +106,7 @@ const PostPage = () => {
           {(errors.content || errors.title) && <p className='text-red-400'>제목과 내용을 입력해주세요</p>}
         </div>
       </form>
+      <Footer />
     </>
   );
 };

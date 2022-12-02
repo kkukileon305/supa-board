@@ -12,7 +12,7 @@ const Board = async ({ searchParams: { category: categoryUrl } }: { searchParams
   const boards = await getBoardsByCategory(categoryUrl);
 
   return (
-    <main className='max-w-[1060px] mx-auto w-full p-3'>
+    <>
       <h2 className='font-bold text-3xl text-gray-700 dark:text-white my-8'>{categories.find(cate => cate.url === categoryUrl)?.name}</h2>
       {!!boards.length ? (
         <ul>
@@ -21,9 +21,9 @@ const Board = async ({ searchParams: { category: categoryUrl } }: { searchParams
           ))}
         </ul>
       ) : (
-        <h2 className='text-center font-bold text-2xl'>아직 글이 없어요</h2>
+        <h2 className='text-center py-8 font-bold text-2xl'>아직 글이 없어요...</h2>
       )}
-    </main>
+    </>
   );
 };
 export default Board;

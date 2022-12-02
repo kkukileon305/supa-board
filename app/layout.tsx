@@ -12,10 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html className={notosans.className}>
       <head />
       <body className='min-h-[100vh] dark:bg-gray-700'>
-        <Provider>
-          {children}
-          <Footer />
-        </Provider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

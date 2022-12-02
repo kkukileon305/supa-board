@@ -1,5 +1,6 @@
 import AdSwiper from '../components/AdSwiper';
 import BoardItem from '../components/BoardItem';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PostBtn from '../components/PostBtn';
 
@@ -28,12 +29,13 @@ const Page = async () => {
       <AdSwiper />
       <main className='max-w-[1060px] mx-auto w-full p-3'>
         <h2 className='font-bold text-3xl text-gray-700 dark:text-white my-8'>오늘의 게시글</h2>
-        <ul>
+        <ul className='min-h-[20vh]'>
           {boards.map(board => (
             <BoardItem key={board.id} board={board} />
           ))}
         </ul>
       </main>
+      <Footer />
       <PostBtn />
     </>
   );

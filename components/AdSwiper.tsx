@@ -1,7 +1,9 @@
 'use client';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper.min.css';
+import { Autoplay } from 'swiper';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import 'swiper/swiper-bundle.css';
 
 const ads = [
   {
@@ -25,11 +27,15 @@ const ads = [
 const AdSwiper = () => {
   return (
     <div className='overflow-x-hidden'>
-      <div className='mx-auto max-w-[1060px] p-3'>
+      <div className='mx-auto max-w-[1060px] p-3 relative'>
         <Swiper //
           spaceBetween={30}
           direction='horizontal'
-          className='!overflow-visible'
+          autoplay={{
+            delay: 10000,
+          }}
+          modules={[Autoplay]}
+          loop
         >
           {ads.map(ad => (
             <SwiperSlide key={ad.id}>
@@ -38,9 +44,32 @@ const AdSwiper = () => {
               </div>
             </SwiperSlide>
           ))}
+          <NextButton />
+          <PrevButton />
         </Swiper>
       </div>
     </div>
   );
 };
+
+const NextButton = () => {
+  const swiper = useSwiper();
+
+  return (
+    <button onClick={() => swiper.slideNext()} className='absolute right-4 top-[calc(50%-15px)] p-2 bg-white/50 aspect-square rounded-full z-10'>
+      <AiOutlineRight color='#00000050' size={30} />
+    </button>
+  );
+};
+
+const PrevButton = () => {
+  const swiper = useSwiper();
+
+  return (
+    <button onClick={() => swiper.slidePrev()} className='absolute left-4 top-[calc(50%-15px)] p-2 bg-white/50 aspect-square rounded-full z-10'>
+      <AiOutlineLeft color='#00000050' size={30} />
+    </button>
+  );
+};
+
 export default AdSwiper;
