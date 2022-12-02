@@ -81,7 +81,7 @@ const PostPage = () => {
     <>
       <Header />
       {modal && (
-        <div onClick={closeModal} className='fixed w-full h-full top-0 left-0 px-2 bg-black/50 flex flex-col items-center justify-center'>
+        <div onClick={closeModal} className='fixed w-full h-full top-0 left-0 px-2 z-20 bg-black/50 flex flex-col items-center justify-center'>
           <div className='container bg-white dark:bg-gray-700 rounded-xl p-8 max-w-[500px] w-full flex flex-col items-center'>
             <p className='mb-12 text-center'>카테고리를 선택해주세요</p>
             <ul className='flex flex-wrap justify-center gap-2'>
