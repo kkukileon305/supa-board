@@ -1,3 +1,4 @@
+import { use } from 'react';
 import BoardItem from '../../components/BoardItem';
 import { categories } from '../../utils/categories';
 import { Board } from '../page';
@@ -8,8 +9,8 @@ const getBoardsByCategory = async (category: string) => {
   return boards;
 };
 
-const Board = async ({ searchParams: { category: categoryUrl } }: { searchParams: { category: string } }) => {
-  const boards = await getBoardsByCategory(categoryUrl);
+const Board = ({ searchParams: { category: categoryUrl } }: { searchParams: { category: string } }) => {
+  const boards = use(getBoardsByCategory(categoryUrl));
 
   return (
     <>
