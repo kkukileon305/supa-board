@@ -37,11 +37,16 @@ const SearchPage = () => {
           />
         </div>
       </div>
-      <ul className='p-3 max-w-[1060px] mx-auto w-full'>
-        {boards.map(board => (
-          <BoardItem key={board.id} board={board} />
-        ))}
-      </ul>
+
+      {!!boards.length ? (
+        <ul className='p-3 max-w-[1060px] mx-auto w-full'>
+          {boards.map(board => (
+            <BoardItem key={board.id} board={board} />
+          ))}
+        </ul>
+      ) : (
+        <h2 className='text-center py-8 font-bold text-2xl'>검색 결과가 없어요...</h2>
+      )}
     </>
   );
 };
