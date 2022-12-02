@@ -15,9 +15,12 @@ export type Board = {
 };
 
 const getAllBoard = async () => {
-  const boards = await (await fetch('http://localhost:3000/api/board', { next: { revalidate: 60 } })).json();
-
-  return boards;
+  try {
+    const boards = await (await fetch('http://localhost:3000/api/board', { next: { revalidate: 60 } })).json();
+    return boards;
+  } catch (error) {
+    return [];
+  }
 };
 
 const Page = async () => {
