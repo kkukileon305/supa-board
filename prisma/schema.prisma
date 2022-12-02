@@ -18,6 +18,7 @@ model Board {
   content   String
   username  String
   comments Comment[]
+  category String
 }
 
 model Comment {

@@ -19,7 +19,7 @@ const Header = () => {
   };
 
   return (
-    <header className='border-b sticky top-0 '>
+    <header className='border-b sticky top-0 bg-white/50 dark:bg-gray-700/50 backdrop-blur z-10'>
       <div className='max-w-[1060px] mx-auto w-full p-3 flex justify-between items-center'>
         <Link className='block font-bold text-2xl' href={'/'}>
           <AiOutlineHome size={30} />
